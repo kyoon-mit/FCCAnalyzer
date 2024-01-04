@@ -16,7 +16,7 @@ if __name__ == "__main__":
     fIn = ROOT.TFile(f"afb.root")
     
     # sample/lumi
-    #xsec = 1692.4238 # pb
+    xsec = 1692.4238 # pb
     lumi_lep = 35 # /pb
     lumi_fccee = 150e6 # /pb
     lumi = lumi_fccee
@@ -25,11 +25,11 @@ if __name__ == "__main__":
     costhetac_abs_min, costhetac_abs_max = 0.05, 0.8
     rebin = 1
     
-    #h_costhetac = fIn.Get(f"{args.proc}/cosThetac")
-    #h_costhetac.Rebin(rebin)
-    #h_meta = fIn.Get(f"{args.proc}/meta") # meta info: number of events in first bin
-    #nevents_sim = h_meta.GetBinContent(1) # number of simulated events
-    #h_costhetac.Scale(xsec*lumi/nevents_sim)
+    h_costhetac = fIn.Get(f"{args.proc}/cosThetac")
+    h_costhetac.Rebin(rebin)
+    h_meta = fIn.Get(f"{args.proc}/meta") # meta info: number of events in first bin
+    nevents_sim = h_meta.GetBinContent(1) # number of simulated events
+    h_costhetac.Scale(xsec*lumi/nevents_sim)
     
     # construct TGraph with errors sqrt(s) of the bin content
     N_F, N_B = 0, 0
